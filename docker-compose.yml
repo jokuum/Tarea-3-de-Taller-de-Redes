@@ -1,0 +1,100 @@
+# ─── SERVICIOS ────────────────────────────────────────────────────────────────
+# "services" define los contenedores que Docker Compose va a gestionar.
+# Cada clave debajo es el nombre interno del servicio (usado por Compose
+# para depends_on y para los logs).
+services:
+
+  # ─── SERVICIO: SERVIDOR MARIADB ─────────────────────────────────────────────
+  servidor:
+
+    # build: le dice a Compose que construya la imagen desde un Dockerfile
+    # en lugar de descargarla de Docker Hub (que usaría "image:").
+    # El valor es la ruta a la carpeta que contiene el Dockerfile.
+    build: ./servidor
+
+    # container_name: nombre fijo del contenedor en Docker.
+    # Sin esto, Compose generaría un nombre aleatorio como "proyecto_servidor_1".
+    container_name: mariadb_server
+
+    # environment: variables de entorno disponibles dentro del contenedor.
+    # Documentan la configuración de MariaDB. Nota: como usamos un Dockerfile
+    # propio con entrypoint.sh + init.sql (no la imagen oficial de MariaDB),
+    # los valores reales los aplica init.sql; estas variables quedan disponibles
+    # dentro del contenedor como referencia y buena práctica de configuración.
+    environment:
+      MARIADB_ROOT_PASSWORD: root_password
+      MARIADB_DATABASE: taller_redes
+      MARIADB_USER: usuario
+      MARIADB_PASSWORD: usuario_password
+
+    # ports: mapeo "puerto_host:puerto_contenedor".
+    # El host usa 3307 porque el 3306 ya está ocupado por otro proceso local.
+    # El contenedor siempre escucha en el 3306 estándar de MariaDB.
+    ports:
+      - "3307:3306"
+
+    # volumes: monta un volumen Docker nombrado en el directorio de datos
+    # de MariaDB. Así la base de datos PERSISTE aunque el contenedor se elimine
+    # y se vuelva a crear. Sin esto, cada "docker compose down" borraría todos
+    # los datos.
+    volumes:
+      - mariadb_data:/var/lib/mysql
+
+    # networks: conecta el contenedor a la red definida abajo.
+    # Ambos servicios deben estar en la misma red para comunicarse
+    # usando el container_name como hostname.
+    networks:
+      - db_network
+
+    # restart: política de reinicio automático.
+    # "unless-stopped" → se reinicia si falla, pero NO si el usuario lo detuvo
+    # manualmente con "docker stop" o "docker compose down".
+    restart: unless-stopped
+
+
+  # ─── SERVICIO: CLIENTE CLOUDBEAVER ──────────────────────────────────────────
+  cliente:
+
+    # build: construye la imagen desde el Dockerfile en ./cliente,
+    # que parte de ubuntu:22.04 y obtiene CloudBeaver via multi-stage build.
+    build: ./cliente
+
+    container_name: cloudbeaver_client
+
+    # ports: CloudBeaver sirve su interfaz web en el puerto 8978.
+    ports:
+      - "8978:8978"
+
+    networks:
+      - db_network
+
+    # depends_on: Compose arranca "servidor" ANTES que "cliente".
+    # Garantiza el orden de inicio, aunque no espera a que MariaDB esté
+    # completamente listo para aceptar conexiones (solo espera que el
+    # contenedor haya iniciado). CloudBeaver reintentará la conexión
+    # automáticamente hasta que el servidor esté disponible.
+    depends_on:
+      - servidor
+
+    restart: unless-stopped
+
+
+# ─── REDES ────────────────────────────────────────────────────────────────────
+# Define las redes que usarán los servicios.
+# Al declararla aquí, Compose la crea automáticamente si no existe.
+networks:
+  db_network:
+    # driver bridge: red privada virtual en el host donde los contenedores
+    # se comunican entre sí por nombre (container_name actúa como hostname DNS).
+    # Es el driver por defecto y el apropiado para comunicación entre contenedores
+    # en el mismo host.
+    driver: bridge
+
+
+# ─── VOLÚMENES ────────────────────────────────────────────────────────────────
+# Define los volúmenes nombrados que usan los servicios.
+# Docker gestiona estos volúmenes independientemente de los contenedores:
+# persisten aunque se haga "docker compose down" y solo se eliminan con
+# "docker compose down -v" o "docker volume rm".
+volumes:
+  mariadb_data:
