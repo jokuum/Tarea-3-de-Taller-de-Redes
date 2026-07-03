@@ -235,4 +235,4 @@ Desarrollado como parte de la asignatura **Taller de Redes**.
 | Nombre | GitHub |
 |---|---|
 | Joaquin Utreras | [@jokuum](https://github.com/jokuum) |
-| Juan Pablo Ugaz | — |
+| Juan Pablo Ugaz | [@jotaRacer](https://github.com/jotaRacer) |
