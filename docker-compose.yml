@@ -79,6 +79,55 @@ services:
     restart: unless-stopped
 
 
+  # ─── SERVICIO: SCAPY (INTERCEPCIÓN / MITM - TAREA 3) ────────────────────────
+  # Contenedor de ataque. Intercepta y modifica el tráfico MySQL entre
+  # cloudbeaver_client y mariadb_server usando Scapy + NFQUEUE.
+  scapy:
+
+    # build: construye la imagen desde ./scapy (ubuntu:22.04 + Scapy + tooling).
+    build: ./scapy
+
+    container_name: scapy_mitm
+
+    # cap_add: capacidades de red elevadas.
+    #   NET_ADMIN → manipular iptables, poner interfaces en promiscuo, ip_forward.
+    #   NET_RAW   → abrir raw sockets (lo que Scapy necesita para enviar/recibir
+    #               paquetes crudos y para NFQUEUE).
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+
+    # volumes: monta los scripts locales dentro del contenedor. Así editas los
+    # .py de Scapy en el host y se reflejan al instante, sin reconstruir la imagen.
+    volumes:
+      - ./scapy/scripts:/scripts
+
+    # ── ESTRATEGIA A ACTIVA (namespace compartido) ──────────────────────────
+    # network_mode: comparte la pila de red del servicio "cliente" (CloudBeaver).
+    # scapy pasa a usar la MISMA interfaz, IP y cadenas iptables del cliente, así
+    # que TODO el tráfico MySQL cliente↔servidor atraviesa su propia netns.
+    # No necesita ARP spoofing ni estar en db_network (de hecho, network_mode y
+    # networks son mutuamente excluyentes en Docker Compose).
+    network_mode: "service:cliente"
+
+    # networks: DESACTIVADO al usar network_mode (Estrategia A). Para volver a la
+    # Estrategia B (ARP spoofing como tercero), comenta network_mode de arriba y
+    # descomenta este bloque:
+    # networks:
+    #   - db_network
+
+    # depends_on: arranca después de que servidor y cliente ya existan.
+    depends_on:
+      - servidor
+      - cliente
+
+    # entrypoint que mantiene el contenedor vivo; los scripts se lanzan con
+    # "docker exec -it scapy_mitm python3 /scripts/<tu_script>.py".
+    command: ["tail", "-f", "/dev/null"]
+
+    restart: unless-stopped
+
+
 # ─── REDES ────────────────────────────────────────────────────────────────────
 # Define las redes que usarán los servicios.
 # Al declararla aquí, Compose la crea automáticamente si no existe.
