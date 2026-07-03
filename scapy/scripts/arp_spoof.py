@@ -1,5 +1,19 @@
 #!/usr/bin/env python3
 """
+DISEÑO EXPLORADO, NO EJECUTADO EN LA ENTREGA FINAL (Tarea 3, spec §3).
+=====================================================================
+Se evaluó esta Estrategia B (Scapy como tercer nodo en db_network, envenenando
+las cachés ARP de servidor y cliente) y se decidió NO usarla: la Estrategia A
+(NFQUEUE + namespace compartido) ya cubre fuzzing y modificación de campos, y
+cambiar de topología competía con el peso real de la tarea.
+
+Además, tal como está el docker-compose.yml (network_mode: "service:cliente"),
+scapy_mitm ES la misma pila de red que el cliente: no hay un "medio" en el que
+insertarse — un contenedor no puede ARP-spoofearse respecto de sí mismo. Para
+ejecutar este script habría que mover scapy a "networks: db_network". Se
+conserva en el repo como constancia del análisis; no se graba demo en el video.
+
+---
 Estrategia B: ARP spoofing entre mariadb_server y cloudbeaver_client.
 
 Envenena la caché ARP de ambos para colocarse en medio (MITM) dentro del

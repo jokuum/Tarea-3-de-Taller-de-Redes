@@ -15,7 +15,9 @@ RUN echo "wireshark-common wireshark-common/install-setuid boolean false" \
 #   libnetfilter-queue-dev / libnfnetlink-dev → cabeceras de NFQUEUE.
 #   iptables                             → redirigir tráfico a la cola NFQUEUE.
 #   tcpdump / tshark                     → verificar/depurar la captura.
-#   iproute2 / net-tools / iputils-ping  → ip, ifconfig, ping para diagnóstico.
+#   iproute2 / net-tools / iputils-ping  → ip, tc (netem), ifconfig, ping.
+#   mariadb-client                       → cliente mysql para la carga de trabajo
+#                                          del barrido de métricas (metricas/barrido.py).
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
         python3 \
@@ -29,13 +31,15 @@ RUN apt-get update && \
         tshark \
         iproute2 \
         net-tools \
-        iputils-ping && \
+        iputils-ping \
+        mariadb-client && \
     rm -rf /var/lib/apt/lists/*
 
 # Scapy y NetfilterQueue vía pip: trae versiones más nuevas que las de apt.
 # NetfilterQueue es el binding moderno de python3 para NFQUEUE (se compila
 # contra libnetfilter-queue-dev, por eso instalamos build-essential arriba).
-RUN pip3 install --no-cache-dir --upgrade scapy NetfilterQueue
+# matplotlib: gráficos métrica vs throughput (metricas/graficar.py, spec §7.6).
+RUN pip3 install --no-cache-dir --upgrade scapy NetfilterQueue matplotlib
 
 # Directorio donde montaremos y editaremos los scripts de Scapy desde el host.
 WORKDIR /scripts

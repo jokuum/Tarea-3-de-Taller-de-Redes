@@ -1,0 +1,8 @@
+metrica,valor,throughput_bps,latencia_query_ms,estado
+loss,0.0,647887.47,14.59,ok
+loss,1.0,708567.17,13.32,ok
+loss,5.0,99077.76,97.66,ok
+loss,10.0,31926.18,297.58,ok
+loss,20.0,11375.47,839.13,ok
+loss,40.0,6277.06,1569.64,ok
+loss,60.0,1553.01,4976.67,degradado

@@ -1,0 +1,45 @@
+2026-07-03 21:33:27.361 | tipo=query     | seq=  0 | byte5=0x03 | largo=36 | data=b'SELECT * FROM usuarios\nLIMIT 0, 200'
+2026-07-03 21:33:27.363 | tipo=error     | seq=  1 | byte5=0xff | largo=52 | data=b"z\x04#42S02Table 'taller_redes.usuarios' doesn't exist"
+2026-07-03 21:33:27.365 | tipo=otro      | Ether / IP / TCP 172.18.0.3:43944 > 172.18.0.2:mysql A
+2026-07-03 21:34:08.889 | tipo=query     | seq=  0 | byte5=0x03 | largo=196 | data=b'INSERT INTO likes (post_id, usuario_id) VALUES\n  (1, 2), (1,'
+2026-07-03 21:34:08.893 | tipo=error     | seq=  1 | byte5=0xff | largo=49 | data=b"z\x04#42S02Table 'taller_redes.likes' doesn't exist"
+2026-07-03 21:34:08.894 | tipo=otro      | Ether / IP / TCP 172.18.0.3:43944 > 172.18.0.2:mysql A
+2026-07-03 21:34:10.488 | tipo=query     | seq=  0 | byte5=0x03 | largo=196 | data=b'INSERT INTO likes (post_id, usuario_id) VALUES\n  (1, 2), (1,'
+2026-07-03 21:34:10.504 | tipo=error     | seq=  1 | byte5=0xff | largo=49 | data=b"z\x04#42S02Table 'taller_redes.likes' doesn't exist"
+2026-07-03 21:34:10.505 | tipo=otro      | Ether / IP / TCP 172.18.0.3:43944 > 172.18.0.2:mysql A
+2026-07-03 21:34:11.525 | tipo=query     | seq=  0 | byte5=0x03 | largo=196 | data=b'INSERT INTO likes (post_id, usuario_id) VALUES\n  (1, 2), (1,'
+2026-07-03 21:34:11.526 | tipo=error     | seq=  1 | byte5=0xff | largo=49 | data=b"z\x04#42S02Table 'taller_redes.likes' doesn't exist"
+2026-07-03 21:34:11.526 | tipo=otro      | Ether / IP / TCP 172.18.0.3:43944 > 172.18.0.2:mysql A
+2026-07-03 21:34:12.246 | tipo=query     | seq=  0 | byte5=0x03 | largo=196 | data=b'INSERT INTO likes (post_id, usuario_id) VALUES\n  (1, 2), (1,'
+2026-07-03 21:34:12.247 | tipo=error     | seq=  1 | byte5=0xff | largo=49 | data=b"z\x04#42S02Table 'taller_redes.likes' doesn't exist"
+2026-07-03 21:34:12.249 | tipo=otro      | Ether / IP / TCP 172.18.0.3:43944 > 172.18.0.2:mysql A
+2026-07-03 21:34:28.504 | tipo=query     | seq=  0 | byte5=0x03 | largo=193 | data=b'CREATE TABLE usuarios (\n  id INT AUTO_INCREMENT PRIMARY KEY,'
+2026-07-03 21:34:28.526 | tipo=resultset | seq=  1 | byte5=0x00 | largo=7 | data=b'\x00\x00\x02\x00\x00\x00'
+2026-07-03 21:34:28.527 | tipo=otro      | Ether / IP / TCP 172.18.0.3:43944 > 172.18.0.2:mysql A
+2026-07-03 21:34:47.753 | tipo=query     | seq=  0 | byte5=0x03 | largo=209 | data=b'CREATE TABLE posts (\n  id INT AUTO_INCREMENT PRIMARY KEY,\n  '
+2026-07-03 21:34:47.764 | tipo=resultset | seq=  1 | byte5=0x00 | largo=7 | data=b'\x00\x00\x02\x00\x00\x00'
+2026-07-03 21:34:47.766 | tipo=otro      | Ether / IP / TCP 172.18.0.3:43944 > 172.18.0.2:mysql A
+2026-07-03 21:35:47.272 | tipo=query     | seq=  0 | byte5=0x03 | largo=36 | data=b'SELECT * FROM usuarios\nLIMIT 0, 200'
+2026-07-03 21:35:47.272 | tipo=resultset | seq=  1 | byte5=0x04 | largo=1 | data=b'7\x00\x00\x02\x03def\x0ctaller_redes\x08usuarios\x08usuarios\x02id\x02id\x00\x0c?\x00\x0b\x00\x00\x00\x03\x03B\x00\x00\x00C'
+2026-07-03 21:35:47.274 | tipo=otro      | Ether / IP / TCP 172.18.0.3:43944 > 172.18.0.2:mysql A
+2026-07-03 21:35:56.384 | tipo=query     | seq=  0 | byte5=0x03 | largo=133 | data=b'SELECT p.id, u.username, p.contenido, p.fecha\nFROM posts p\nJ'
+2026-07-03 21:35:56.385 | tipo=resultset | seq=  1 | byte5=0x04 | largo=1 | data=b'-\x00\x00\x02\x03def\x0ctaller_redes\x01p\x05posts\x02id\x02id\x00\x0c?\x00\x0b\x00\x00\x00\x03\x03B\x00\x00\x00<\x00\x00\x03\x03def\x0cta'
+2026-07-03 21:35:56.386 | tipo=otro      | Ether / IP / TCP 172.18.0.3:43944 > 172.18.0.2:mysql A
+2026-07-03 21:36:11.437 | tipo=query     | seq=  0 | byte5=0x03 | largo=167 | data=b'SELECT c.id, u.username, p.contenido AS post, c.texto, c.fec'
+2026-07-03 21:36:11.438 | tipo=resultset | seq=  1 | byte5=0x05 | largo=1 | data=b'3\x00\x00\x02\x03def\x0ctaller_redes\x01c\x0bcomentarios\x02id\x02id\x00\x0c?\x00\x0b\x00\x00\x00\x03\x03B\x00\x00\x00<\x00\x00\x03\x03'
+2026-07-03 21:36:11.438 | tipo=otro      | Ether / IP / TCP 172.18.0.3:43944 > 172.18.0.2:mysql A
+2026-07-03 21:36:30.953 | tipo=query     | seq=  0 | byte5=0x03 | largo=157 | data=b'SELECT p.id, p.contenido, COUNT(l.id) AS total_likes\nFROM po'
+2026-07-03 21:36:31.009 | tipo=resultset | seq=  1 | byte5=0x03 | largo=1 | data=b'-\x00\x00\x02\x03def\x0ctaller_redes\x01p\x05posts\x02id\x02id\x00\x0c?\x00\x0b\x00\x00\x00\x03\x01\x00\x00\x00\x00;\x00\x00\x03\x03def\x0cta'
+2026-07-03 21:36:31.010 | tipo=otro      | Ether / IP / TCP 172.18.0.3:43944 > 172.18.0.2:mysql A
+2026-07-03 21:36:39.914 | tipo=query     | seq=  0 | byte5=0x03 | largo=65 | data=b"UPDATE usuarios SET email = 'ana_nueva@example.com' WHERE id"
+2026-07-03 21:36:39.915 | tipo=resultset | seq=  1 | byte5=0x00 | largo=48 | data=b'\x01\x00\x02\x00\x00\x00(Rows matched: 1  Changed: 1  Warnings: 0'
+2026-07-03 21:36:39.917 | tipo=otro      | Ether / IP / TCP 172.18.0.3:43944 > 172.18.0.2:mysql A
+2026-07-03 21:36:44.129 | tipo=query     | seq=  0 | byte5=0x03 | largo=109 | data=b"UPDATE posts SET contenido = 'Incre\xc3\xadble concierto anoche, l"
+2026-07-03 21:36:44.175 | tipo=resultset | seq=  1 | byte5=0x00 | largo=48 | data=b'\x01\x00\x02\x00\x00\x00(Rows matched: 1  Changed: 1  Warnings: 0'
+2026-07-03 21:36:44.177 | tipo=otro      | Ether / IP / TCP 172.18.0.3:43944 > 172.18.0.2:mysql A
+2026-07-03 21:36:52.098 | tipo=query     | seq=  0 | byte5=0x03 | largo=36 | data=b'SELECT * FROM usuarios\nLIMIT 0, 200'
+2026-07-03 21:36:52.099 | tipo=resultset | seq=  1 | byte5=0x04 | largo=1 | data=b'7\x00\x00\x02\x03def\x0ctaller_redes\x08usuarios\x08usuarios\x02id\x02id\x00\x0c?\x00\x0b\x00\x00\x00\x03\x03B\x00\x00\x00C'
+2026-07-03 21:36:52.102 | tipo=otro      | Ether / IP / TCP 172.18.0.3:43944 > 172.18.0.2:mysql A
+2026-07-03 21:36:55.256 | tipo=query     | seq=  0 | byte5=0x03 | largo=33 | data=b'SELECT * FROM posts\nLIMIT 0, 200'
+2026-07-03 21:36:55.257 | tipo=resultset | seq=  1 | byte5=0x04 | largo=1 | data=b'1\x00\x00\x02\x03def\x0ctaller_redes\x05posts\x05posts\x02id\x02id\x00\x0c?\x00\x0b\x00\x00\x00\x03\x03B\x00\x00\x00A\x00\x00\x03\x03de'
+2026-07-03 21:36:55.258 | tipo=otro      | Ether / IP / TCP 172.18.0.3:43944 > 172.18.0.2:mysql A

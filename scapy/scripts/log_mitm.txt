@@ -1,0 +1,9 @@
+2026-07-03 21:48:56.109 | [*] Interceptando MySQL en NFQUEUE #1 | MODO=comando | Ctrl-C para salir.
+2026-07-03 21:49:21.761 | [MOD comando] 0x03 -> 0x02 | seq=0 | query=b'SELECT * FROM usuarios\nLIMIT 0, 200'
+2026-07-03 21:51:15.615 | [*] Interceptando MySQL en NFQUEUE #1 | MODO=largo | Ctrl-C para salir.
+2026-07-03 21:51:25.941 | [MOD largo] 33 -> 83 | seq=0
+2026-07-03 21:53:52.222 | [*] Interceptando MySQL en NFQUEUE #1 | MODO=largo | Ctrl-C para salir.
+2026-07-03 21:55:08.740 | [*] Interceptando MySQL en NFQUEUE #1 | MODO=largo | Ctrl-C para salir.
+2026-07-03 21:58:50.914 | [*] Interceptando MySQL en NFQUEUE #1 | MODO=sequence_id | Ctrl-C para salir.
+2026-07-03 22:00:17.940 | [MOD sequence_id] 0 -> 5
+2026-07-03 22:02:18.626 | [MOD sequence_id] 0 -> 5

@@ -1,0 +1,11 @@
+2026-07-03 22:09:09.073 | [RESP servidor] ERROR packet: 18000001ff1704233038533031556e6b6e6f776e20636f6d6d616e64
+2026-07-03 22:09:22.545 | [*] Fuzzing en NFQUEUE #1 | modo=comando | limite=1 | Ctrl-C para salir.
+2026-07-03 22:09:48.368 | [FUZZ comando] #1 inyectado | comando=0x4b largo_real=16
+2026-07-03 22:09:48.370 | [RESP servidor] ERROR packet: 18000001ff1704233038533031556e6b6e6f776e20636f6d6d616e64
+2026-07-03 22:10:43.661 | [RESP servidor] ERROR packet: 18000001ff1704233038533031556e6b6e6f776e20636f6d6d616e64
+2026-07-03 22:11:06.628 | [*] Fuzzing en NFQUEUE #1 | modo=largo | limite=1 | Ctrl-C para salir.
+2026-07-03 22:11:45.974 | [FUZZ largo] #1 inyectado | largo_declarado=0xFFFFFF largo_real=10
+2026-07-03 22:12:25.632 | [*] Fuzzing en NFQUEUE #1 | modo=largo | limite=1 | Ctrl-C para salir.
+2026-07-03 22:12:30.160 | [FUZZ largo] #1 inyectado | largo_declarado=0xFFFFFF largo_real=10
+2026-07-03 22:12:30.162 | [RESP servidor] ERROR packet: 18000001ff1704233038533031556e6b6e6f776e20636f6d6d616e64
+2026-07-03 22:14:33.039 | [RESP servidor] ERROR packet: 18000001ff1704233038533031556e6b6e6f776e20636f6d6d616e64
